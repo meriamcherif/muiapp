@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Box,createTheme,Stack, ThemeProvider } from "@mui/material";
+import Feed from "./components/Feed.js";
+import Navbar from "./components/Navbar.js";
+import Rightbar from "./components/Rightbar.js";
+import Sidebar from "./components/Sidebar.js";
+import Add from "./components/Add.js"
+import { useState } from "react";
+import { text } from "express";
 function App() {
+  const[mode,setMode]=useState("dark");
+  const darkTheme=createTheme({
+    palette:{
+      mode: mode
+    }
+  })
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  <Box>
+    <Navbar/>
+
+    {/* navbar */ }
+<Stack direction="row" spacing={2} justifyContent="space-between">
+<Sidebar/>
+<Feed/>
+<Rightbar/>
+</Stack>
+<Add/>
+  </Box>
+   );
 }
 
 export default App;
